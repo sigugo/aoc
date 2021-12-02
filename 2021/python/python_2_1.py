@@ -1,5 +1,6 @@
 from tools import file_to_list
 
+
 class Submarine:
     def __init__(self):
         self._x: int = 0
@@ -13,7 +14,7 @@ class Submarine:
             distance = entry.split(" ")[1].strip()
             self._course.append((direction, int(distance)))
 
-    def follow_course(self):
+    def follow_course(self) -> None:
         for command in self._course:
             if command[0] == "forward":
                 self._x += command[1]

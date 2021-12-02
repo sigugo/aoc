@@ -6,7 +6,7 @@ class Submarine(python_2_1.Submarine):
         super(Submarine, self).__init__()
         self._aim: int = 0
 
-    def follow_course(self):
+    def follow_course(self) -> None:
         for command in self._course:
             if command[0] == "forward":
                 self._x += command[1]
