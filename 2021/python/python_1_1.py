@@ -29,3 +29,4 @@ if __name__ == '__main__':
     sweep = SonarSweep()
     sweep.read_input_file(input_file)
     print(sweep.count_depth_increases())
+

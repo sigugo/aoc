@@ -27,3 +27,4 @@ if __name__ == '__main__':
     sub.append_course_file(input_file)
     sub.follow_course()
     sub.print_position()
+

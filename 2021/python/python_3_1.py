@@ -41,3 +41,4 @@ if __name__ == '__main__':
     report = Diagnostics()
     report.read_diagnostic_datafile(input_file)
     print(int(report.get_gamma(), base=2) * int(report.get_epsilon(), base=2))
+

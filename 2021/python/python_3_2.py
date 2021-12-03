@@ -54,3 +54,4 @@ if __name__ == '__main__':
     
     print("AOC result")
     print(report.get_life_support_rating())
+
