@@ -1,6 +1,6 @@
 from tools import binary_invert
-from python_3_1 import count_high_at_index
-from python_3_1 import Diagnostics as DiagnosticsSuper
+from day_3_1 import count_high_at_index
+from day_3_1 import Diagnostics as DiagnosticsSuper
 from copy import deepcopy
 
 

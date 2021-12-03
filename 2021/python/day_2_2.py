@@ -1,7 +1,7 @@
-import python_2_1
+import day_2_1
 
 
-class Submarine(python_2_1.Submarine):
+class Submarine(day_2_1.Submarine):
     def __init__(self):
         super(Submarine, self).__init__()
         self._aim: int = 0
