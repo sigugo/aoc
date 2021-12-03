@@ -8,7 +8,6 @@ class SonarSweep(python_1_1.SonarSweep):
         super().__init__()
 
     def count_sliding_depth_increases(self, window_size: int = 3) -> int:
-        last = None
         n = 0
         window = []
         last_window = None
@@ -29,4 +28,3 @@ if __name__ == '__main__':
     sweep = SonarSweep()
     sweep.read_input_file(input_file)
     print(sweep.count_sliding_depth_increases())
-
