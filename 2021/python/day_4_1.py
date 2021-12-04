@@ -108,7 +108,6 @@ class BingoBoard:
     def get_value(self) -> int:
         return self._value
 
-    # DEBUG
     def __str__(self) -> str:
         output = ""
         for line in self._board:
