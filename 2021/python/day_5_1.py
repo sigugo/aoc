@@ -20,8 +20,6 @@ class VentMap:
             if x1 == x2 or y1 == y2:
                 print("## adding orthogonal", x1, ",", y1, "->", x2, ",", y2)
                 self._add_orthogonal_line(x1, y1, x2, y2, i)
-            elif x1 == y2 and x2 == y1:
-                print("## adding diagonal", x1, ",", y1, "->", x2, ",", y2)
             else:
                 print("## discarding", x1, ",", y1, "->", x2, ",", y2)
 
@@ -47,7 +45,7 @@ class VentMap:
 
 
 if __name__ == '__main__':
-    input_file = '../inputs/5/example.txt'
+    input_file = '../inputs/5/input.txt'
     input_data: list[str] = file_to_list(input_file)
     print(input_data)
     ventmap = VentMap()
