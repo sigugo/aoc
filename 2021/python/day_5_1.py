@@ -30,9 +30,9 @@ class VentMap:
                 self._map.setdefault((x, y), []).append(i)
 
     def get_overlap_count(self) -> int:
-        return len(self.get_overlapping_coordinates())
+        return len(self._get_overlapping_coordinates())
 
-    def get_overlapping_coordinates(self) -> list[tuple[int, int]]:
+    def _get_overlapping_coordinates(self) -> list[tuple[int, int]]:
         result: list[tuple[int, int]] = []
         for k, v in self._map.items():
             if len(v) > 1:
