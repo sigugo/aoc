@@ -18,8 +18,11 @@ class VentMap:
             if x1 > x2 or (x1 == x2 and y1 > y2):
                 x1, y1, x2, y2 = x2, y2, x1, y1
 
-            if x1 == x2 or y1 == y2:
-                self._add_orthogonal_line(x1, y1, x2, y2, i)
+            self._check_line_add(x1, y1, x2, y2, i)
+
+    def _check_line_add(self, x1: int, y1: int, x2: int, y2: int, i: int) -> None:
+        if x1 == x2 or y1 == y2:
+            self._add_orthogonal_line(x1, y1, x2, y2, i)
 
     def _add_orthogonal_line(self, x1, y1, x2, y2, i) -> None:
         for x in range(x1, x2 + 1):
@@ -62,7 +65,7 @@ if __name__ == '__main__':
     input_data: list[str] = file_to_list(input_file)
     ventmap = VentMap()
     ventmap.read_input(input_data)
-    print()
+    # print()
     # print('Map')
     # print(ventmap)
     print('Overlap Count', ventmap.get_overlap_count())

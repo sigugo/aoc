@@ -6,18 +6,7 @@ class VentMap(day_5_1.VentMap):
     def __init__(self):
         super(VentMap, self).__init__()
 
-    def read_input(self, input_data: list[str]) -> None:
-        for i in range(len(input_data)):
-            coords = input_data[i].strip().split(" -> ")
-            start = coords[0].split(',')
-            end = coords[1].split(',')
-            x1 = int(start[0])
-            y1 = int(start[1])
-            x2 = int(end[0])
-            y2 = int(end[1])
-
-            if x1 > x2 or (x1 == x2 and y1 > y2):
-                x1, y1, x2, y2 = x2, y2, x1, y1
+    def _check_line_add(self, x1: int, y1:int, x2: int, y2: int, i: int) -> None:
 
             ax1, ax2 = 0, x2 - x1
 
