@@ -42,7 +42,7 @@ class VentMap:
                 result.append(k)
         return result
 
-    def __str__(self):
+    def __str__(self) -> str:
         output = ""
         x1, y1, x2, y2 = 0, 0, 0, 0
         for t in self._map:
