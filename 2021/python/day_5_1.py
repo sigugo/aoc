@@ -27,6 +27,9 @@ class VentMap:
     def _add_orthogonal_line(self, x1, y1, x2, y2, i) -> None:
         for x in range(x1, x2 + 1):
             for y in range(y1, y2 + 1):
+                self._add_point(x, y, i)
+
+    def _add_point(self, x: int, y: int, i:int = 0) -> None:
                 self._map.setdefault((x, y), []).append(i)
 
     def get_overlap_count(self) -> int:

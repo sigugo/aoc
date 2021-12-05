@@ -23,7 +23,7 @@ class VentMap(day_5_1.VentMap):
     def _add_diagonal(self, x1, y1, x2, y2, i):
         y = y1
         for x in range(x1, x2+1):
-            self._map.setdefault((x, y), []).append(i)
+            self._add_point(x, y, i)
             if y1 > y2:
                 y -= 1
             else:
