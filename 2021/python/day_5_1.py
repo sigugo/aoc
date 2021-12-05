@@ -7,8 +7,6 @@ class VentMap:
 
     def read_input(self, input_data: list[str]) -> None:
         for i in range(len(input_data)):
-
-            # this sucks, but my brain is offline atm
             coords = input_data[i].strip().split(" -> ")
             start = coords[0].split(',')
             end = coords[1].split(',')
@@ -17,20 +15,15 @@ class VentMap:
             x2 = int(end[0])
             y2 = int(end[1])
 
+            if x1 > x2 or (x1 == x2 and y1 > y2):
+                x1, y1, x2, y2 = x2, y2, x1, y1
+
             if x1 == x2 or y1 == y2:
-                print("## adding orthogonal", x1, ",", y1, "->", x2, ",", y2)
                 self._add_orthogonal_line(x1, y1, x2, y2, i)
-            else:
-                print("## discarding", x1, ",", y1, "->", x2, ",", y2)
 
     def _add_orthogonal_line(self, x1, y1, x2, y2, i) -> None:
-        if x1 > x2:
-            x1, x2 = x2, x1
-        if y1 > y2:
-            y1, y2 = y2, y1
         for x in range(x1, x2 + 1):
             for y in range(y1, y2 + 1):
-                print("- coordinate added:", x , y, "with index", i)
                 self._map.setdefault((x, y), []).append(i)
 
     def get_overlap_count(self) -> int:
@@ -43,11 +36,33 @@ class VentMap:
                 result.append(k)
         return result
 
+    def __str__(self):
+        output = ""
+        x1, y1, x2, y2 = 0, 0, 0, 0
+        for t in self._map:
+            if t[0] > x2:
+                x2 = t[0]
+            if t[1] > y2:
+                y2 = t[1]
+
+        for y in range(y1, y2+1):
+            for x in range(x1, x2+1):
+                indexes = self._map.get((x, y), [])
+                if len(indexes) > 0:
+                    output += str(len(indexes))
+                else:
+                    output += "."
+            output += '\n'
+        return output
+
 
 if __name__ == '__main__':
     input_file = '../inputs/5/input.txt'
+    # input_file = '../inputs/5/example.txt'
     input_data: list[str] = file_to_list(input_file)
-    print(input_data)
     ventmap = VentMap()
     ventmap.read_input(input_data)
-    print(ventmap.get_overlap_count())
+    print()
+    # print('Map')
+    # print(ventmap)
+    print('Overlap Count', ventmap.get_overlap_count())

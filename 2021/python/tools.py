@@ -1,5 +1,3 @@
-import re
-
 # Read input data into list of strings
 def file_to_list(file_name: str) -> list:
     output = []
