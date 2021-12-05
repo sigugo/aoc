@@ -2,7 +2,6 @@ from tools import file_to_list
 
 
 class SonarSweep:
-
     def __init__(self):
         self._sonar_values = list[int]
 
@@ -24,9 +23,8 @@ class SonarSweep:
         return n
 
 
-if __name__ == '__main__':
-    input_file = '../inputs/1/input.txt'
+if __name__ == "__main__":
+    input_file = "../inputs/1/input.txt"
     sweep = SonarSweep()
     sweep.read_input_file(input_file)
     print(sweep.count_depth_increases())
-

@@ -3,7 +3,6 @@ from copy import deepcopy
 
 
 class SonarSweep(day_1_1.SonarSweep):
-
     def __init__(self):
         super().__init__()
 
@@ -23,9 +22,8 @@ class SonarSweep(day_1_1.SonarSweep):
         return n
 
 
-if __name__ == '__main__':
-    input_file = '../inputs/1/input.txt'
+if __name__ == "__main__":
+    input_file = "../inputs/1/input.txt"
     sweep = SonarSweep()
     sweep.read_input_file(input_file)
     print(sweep.count_sliding_depth_increases())
-

@@ -21,10 +21,9 @@ class Submarine(day_2_1.Submarine):
                     self._aim -= command[1]
 
 
-if __name__ == '__main__':
-    input_file = '../inputs/2/input.txt'
+if __name__ == "__main__":
+    input_file = "../inputs/2/input.txt"
     sub = Submarine()
     sub.append_course_file(input_file)
     sub.follow_course()
     sub.print_position()
-

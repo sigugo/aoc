@@ -8,8 +8,8 @@ class VentMap:
     def read_input(self, input_data: list[str]) -> None:
         for i in range(len(input_data)):
             coords = input_data[i].strip().split(" -> ")
-            start = coords[0].split(',')
-            end = coords[1].split(',')
+            start = coords[0].split(",")
+            end = coords[1].split(",")
             x1 = int(start[0])
             y1 = int(start[1])
             x2 = int(end[0])
@@ -29,8 +29,8 @@ class VentMap:
             for y in range(y1, y2 + 1):
                 self._add_point(x, y, i)
 
-    def _add_point(self, x: int, y: int, i:int = 0) -> None:
-                self._map.setdefault((x, y), []).append(i)
+    def _add_point(self, x: int, y: int, i: int = 0) -> None:
+        self._map.setdefault((x, y), []).append(i)
 
     def get_overlap_count(self) -> int:
         return len(self._get_overlapping_coordinates())
@@ -51,19 +51,19 @@ class VentMap:
             if t[1] > y2:
                 y2 = t[1]
 
-        for y in range(y1, y2+1):
-            for x in range(x1, x2+1):
+        for y in range(y1, y2 + 1):
+            for x in range(x1, x2 + 1):
                 indexes = self._map.get((x, y), [])
                 if len(indexes) > 0:
                     output += str(len(indexes))
                 else:
                     output += "."
-            output += '\n'
+            output += "\n"
         return output
 
 
-if __name__ == '__main__':
-    input_file = '../inputs/5/input.txt'
+if __name__ == "__main__":
+    input_file = "../inputs/5/input.txt"
     # input_file = '../inputs/5/example.txt'
     input_data: list[str] = file_to_list(input_file)
     ventmap = VentMap()
@@ -71,4 +71,4 @@ if __name__ == '__main__':
     # print()
     # print('Map')
     # print(ventmap)
-    print('Overlap Count', ventmap.get_overlap_count())
+    print("Overlap Count", ventmap.get_overlap_count())

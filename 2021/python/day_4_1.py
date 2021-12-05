@@ -12,14 +12,14 @@ class BingoGame:
         self.parse_draw_data(bingo_data[0])
         self.parse_boards_data(bingo_data[1:])
 
-    def parse_draw_data(self, draw_data: str, separator: str = ',') -> None:
+    def parse_draw_data(self, draw_data: str, separator: str = ",") -> None:
         for draw in draw_data.strip().split(separator):
             self.add_draw(int(draw))
 
     def add_draw(self, draw: int):
         self._draws.append(draw)
 
-    def parse_boards_data(self, boards_data: list[str], separator=' ') -> None:
+    def parse_boards_data(self, boards_data: list[str], separator=" ") -> None:
         board_data: list[list[str]] = []
         for line in boards_data:
             if not line == "":
@@ -49,11 +49,11 @@ class BingoGame:
                 max_score = score
         self._draw_index += 1
         return max_score
-    
+
     def __str__(self) -> str:
-        output = '================================================\n'
+        output = "================================================\n"
         for board in self._boards:
-            output += str(board) + '\n'
+            output += str(board) + "\n"
         return output
 
 
@@ -115,13 +115,13 @@ class BingoBoard:
                 padding = " "
                 if entry[1]:
                     padding = "|"
-                output += padding + '{0:02d}'.format(entry[0]) + padding + " "
-            output += '\n';
+                output += padding + "{0:02d}".format(entry[0]) + padding + " "
+            output += "\n"
         return output
 
 
-if __name__ == '__main__':
-    input_file = '../inputs/4/input.txt'
+if __name__ == "__main__":
+    input_file = "../inputs/4/input.txt"
     # input_file = '../inputs/4/example.txt'
     input_data: list[str] = file_to_list(input_file)
     game = BingoGame()
