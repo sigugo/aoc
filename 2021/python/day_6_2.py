@@ -53,3 +53,4 @@ if __name__ == "__main__":
     lanternfish_school.parse_input_data(input_data[0])
     lanternfish_school.advance_day(256)
     print(lanternfish_school.count_fish())
+
