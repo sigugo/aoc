@@ -1,17 +1,11 @@
 from tools import *
 
 
-class LargeSchoolOfFish:
+class SchoolOfFish:
     def __init__(self):
-        self._swarm: dict[int, int] = {}
-
         self._spawn_timer: int = 6
-        self._initial_spawn_delta: int = 2
-        self._init_swarm()
-
-    def _init_swarm(self):
-        for i in range(self._spawn_timer + self._initial_spawn_delta + 1):
-            self._swarm[i] = 0
+        self._mature_delta: int = 2
+        self._swarm: list[int] = [0] * (self._spawn_timer + self._mature_delta + 1)
 
     def parse_input_data(self, input_data: list[str]):
         input_strings: list[str] = []
@@ -22,8 +16,8 @@ class LargeSchoolOfFish:
 
     def count_fish(self) -> None:
         count: int = 0
-        for value in self._swarm.values():
-            count += value
+        for i in range(len(self._swarm)):
+            count += self._swarm[i]
         return count
 
     def advance_day(self, days: int = 1):
@@ -31,25 +25,34 @@ class LargeSchoolOfFish:
             self._next_day()
 
     def _next_day(self) -> None:
-        last_swarm = self._swarm.copy()
-        spawns: int = 0
-        self._init_swarm()
-
-        for i in range(self._spawn_timer + self._initial_spawn_delta + 1):
+        spawn_timer_zero_count: int = 0
+        for i in range(len(self._swarm)):
             if i == 0:
-                spawns = last_swarm[i]
+                spawn_timer_zero_count = self._swarm[i]
             else:
-                self._swarm[i - 1] += last_swarm[i]
+                self._swarm[i - 1] = self._swarm[i]
+        self._swarm[self._spawn_timer] += spawn_timer_zero_count
+        self._swarm[self._spawn_timer + self._mature_delta] = spawn_timer_zero_count
 
-        self._swarm[self._spawn_timer] += spawns
-        self._swarm[self._spawn_timer + self._initial_spawn_delta] = spawns
+    def __str__(self) -> str:
+        output: str = ""
+        for i in range(len(self._swarm)):
+            marker: str = ""
+            if i == 0:
+                marker = "."
+            elif i == self._spawn_timer:
+                marker = "|"
+            elif i == self._spawn_timer + 1:
+                marker = "+"
+            output += marker + str(self._swarm[i]) + marker + " "
+        return output
 
 
 if __name__ == "__main__":
     input_file = "../inputs/6/input.txt"
     # input_file = "../inputs/6/example.txt"
     input_data: list[str] = file_to_list(input_file)
-    lanternfish_school = LargeSchoolOfFish()
+    lanternfish_school = SchoolOfFish()
     lanternfish_school.parse_input_data(input_data)
     lanternfish_school.advance_day(256)
     print(lanternfish_school.count_fish())
