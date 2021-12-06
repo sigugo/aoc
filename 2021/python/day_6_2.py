@@ -17,7 +17,7 @@ class SchoolOfFish:
             count += self._swarm[i]
         return count
 
-    def advance_day(self, days: int = 1):
+    def advance_day(self, days: int = 1) -> None:
         for d in range(days):
             self._next_day()
 
