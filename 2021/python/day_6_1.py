@@ -39,7 +39,3 @@ if __name__ == "__main__":
     lanternfish_school.parse_input_data(input_data)
     lanternfish_school.advance_day(80)
     print(lanternfish_school.count_fish())
-    big_lanternfish_school = SchoolOfFish()
-    big_lanternfish_school.parse_input_data(input_data)
-    big_lanternfish_school.advance_day(256)
-    print(lanternfish_school.count_fish())

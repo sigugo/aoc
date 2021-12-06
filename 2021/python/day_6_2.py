@@ -51,6 +51,5 @@ if __name__ == "__main__":
     input_data: list[str] = file_to_list(input_file)
     lanternfish_school = LargeSchoolOfFish()
     lanternfish_school.parse_input_data(input_data)
-    print(lanternfish_school._swarm)
     lanternfish_school.advance_day(256)
     print(lanternfish_school.count_fish())
