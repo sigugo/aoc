@@ -19,4 +19,5 @@ if __name__ == "__main__":
     input_data: list[str] = file_to_list(input_file)
     cast = CrabCast()
     cast.parse_input_data(input_data[0])
-    print(cast.get_cheapest_target_position())
+    print(cast.get_cheapest_target_position_cost())
+
