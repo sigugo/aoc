@@ -7,6 +7,7 @@ class CrabCast(day_7_1.CrabCast):
         super(CrabCast, self).__init__()
 
     def _move_cost_to_target(self, start_position: int, target_position: int) -> int:
+        # inspired by: https://math.stackexchange.com/questions/1908152/how-to-calculate-the-sum-of-an-incremental-string-of-numbers
         distance = abs(target_position - start_position)
         return int(
             distance * (distance + 1) / 2 * self._cast_postitions[start_position]
