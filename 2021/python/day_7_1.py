@@ -27,10 +27,17 @@ class CrabCast:
         distance = abs(target_position - start_position)
         return distance * self._cast_postitions[start_position]
 
+    def __str__(self):
+        output = ""
+        for i in range(len(self._cast_postitions)):
+            if self._cast_postitions[i] > 0:
+                output += (str(i) + ",") * self._cast_postitions[i]
+        return output[:-1]
+
 
 if __name__ == "__main__":
-    input_file = "../inputs/7/input.txt"
-    # input_file = "../inputs/7/example.txt"
+    # input_file = "../inputs/7/input.txt"
+    input_file = "../inputs/7/example.txt"
     input_data: list[str] = file_to_list(input_file)
     cast = CrabCast()
     cast.parse_input_data(input_data[0])
