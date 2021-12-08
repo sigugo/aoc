@@ -11,9 +11,7 @@ class DisplayDecoder:
         for line in input_data:
             unique_signals, decode_signals = line.strip().split("|")
             signal_decoder = SignalDecoder()
-            signal_decoder.set_unique_signals(
-                sorted(unique_signals.strip().split(" "), key=len)
-            )
+            signal_decoder.set_unique_signals(sorted(unique_signals.strip().split(" "), key=len))
             signal_decoder.set_signal_data(decode_signals.strip().split(" "))
             signal_decoder.build_signal_list()
             self._signals.append(signal_decoder)
@@ -51,9 +49,7 @@ def remove_string_from_list(strings: list[str], string: [str]) -> list[str]:
     return strings
 
 
-def strings_from_list_containing_characters(
-    strings: list[str], search: str
-) -> list[str]:
+def strings_from_list_containing_characters(strings: list[str], search: str) -> list[str]:
     """
     Looks through the list "strings".
     Will return a list of all items in strings, that contain all characters of "search"
@@ -70,23 +66,6 @@ def strings_from_list_containing_characters(
         if match:
             output.append(string)
     return output
-
-
-def get_strings_with_difference_n_from_second(
-    first_strings: list[str], second_strings: list[str], n: int
-) -> list[str]:
-    """
-    Looks at the two list of strings, first_strings and second_strings.
-    Will return all entries from second_strings that differ by n characters from any entry in first_strings
-    :param first_strings: list[str]
-    :param second_strings: list[str]
-    :param n: int
-    """
-    output: list[str] = []
-    for first in first_strings:
-        for second in second_strings:
-            if abs(len(first) - len(second)) == n:
-                output.append(second)
 
 
 def common_characters(first: str, second: str) -> str:
@@ -135,9 +114,7 @@ class SignalDecoder(day_8_1.SignalDecoder):
         eg = characters_not_in_second_string(bdeg, bd)
 
         # out of length_5 only the number 2 will have eg in it
-        signal_list[2] = strings_from_list_containing_characters(length_5, eg)[
-            0
-        ]  # found 1,2,4,7,8
+        signal_list[2] = strings_from_list_containing_characters(length_5, eg)[0]  # found 1,2,4,7,8
 
         bf = characters_not_in_second_string(signal_list[8], signal_list[2])
 
