@@ -9,7 +9,7 @@ class SimpleDisplayDecoder:
         for line in input_data:
             unique_signals, decode_signals = line.strip().split("|")
             signal_decoder = SignalDecoder()
-            signal_decoder.set_unique_signals(sorted(unique_signals.strip().split(" "), key=len))
+            signal_decoder.set_unique_signals(unique_signals.strip().split(" "))
             signal_decoder.set_signal_data(decode_signals.strip().split(" "))
             self._signals.append(signal_decoder)
 
