@@ -148,9 +148,7 @@ class SignalDecoder(day_8_1.SignalDecoder):
             signal_list[1], f
         )  # found a, b, c, d, f / missing e, g
 
-        cdefg = characters_not_in_second_string(signal_list[8], a + b)
-
-        # removing the d line from 8 gives us a 0
+        # removing the d line from 8 gives us 0
         signal_list[0] = signal_list[8].replace(d, "")  # 0,1,2,4,7,8
 
         length_6 = remove_string_from_list(length_6, signal_list[0])  # contains 6,9
