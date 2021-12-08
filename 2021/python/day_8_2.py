@@ -26,6 +26,13 @@ class DisplayDecoder:
 
 
 def characters_not_in_second_string(first: str, second: str) -> str:
+    """
+    String first and second are compared,
+    the output will be a string ouf all characters that are in string first but not in string second
+    :param first: str
+    :param second: str
+    :return: str
+    """
     chars = ""
     for c in first:
         if second.find(c) == -1:
@@ -34,11 +41,26 @@ def characters_not_in_second_string(first: str, second: str) -> str:
 
 
 def remove_string_from_list(strings: list[str], string: [str]) -> list[str]:
+    """
+    Will remove all occurrences of string from the list strings and return it
+    :param strings: list[str]
+    :param string: str
+    :return: list[str]
+    """
     del strings[strings.index(string)]
     return strings
 
 
-def strings_from_list_containing_characters(strings: list[str], search: str) -> str:
+def strings_from_list_containing_characters(
+    strings: list[str], search: str
+) -> list[str]:
+    """
+    Looks through the list "strings".
+    Will return a list of all items in strings, that contain all characters of "search"
+    :param strings: list[str]
+    :param search: str
+    :return: list[str]
+    """
     output: list[str] = []
     for string in strings:
         match = True
@@ -51,16 +73,29 @@ def strings_from_list_containing_characters(strings: list[str], search: str) -> 
 
 
 def get_strings_with_difference_n_from_second(
-    first_strings: list[str], second_strings: list[str], diff: int
+    first_strings: list[str], second_strings: list[str], n: int
 ) -> list[str]:
+    """
+    Looks at the two list of strings, first_strings and second_strings.
+    Will return all entries from second_strings that differ by n characters from any entry in first_strings
+    :param first_strings: list[str]
+    :param second_strings: list[str]
+    :param n: int
+    """
     output: list[str] = []
     for first in first_strings:
         for second in second_strings:
-            if abs(len(first) - len(second)) == diff:
+            if abs(len(first) - len(second)) == n:
                 output.append(second)
 
 
-def common_characters(first: str, second: str):
+def common_characters(first: str, second: str) -> str:
+    """
+    Takes two strings and returns the common characters as a string
+    :param first: str
+    :param second: str
+    :return: str
+    """
     output = ""
     for c in first:
         if second.find(c) != -1:
