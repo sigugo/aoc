@@ -171,7 +171,7 @@ class SignalDecoder(day_8_1.SignalDecoder):
         self._signal_list = deepcopy(signal_list)
 
     def get_signal_value(self) -> int:
-        if self._signal_list == []:
+        if not self._signal_list:
             self.build_signal_list()
         # return int(self.get_signal_string())
         output = 0
@@ -181,7 +181,7 @@ class SignalDecoder(day_8_1.SignalDecoder):
         return output
 
     def get_signal_string(self) -> str:
-        if self._signal_list == []:
+        if not self._signal_list:
             self.build_signal_list()
         output = ""
         for d in self._signal_data:
