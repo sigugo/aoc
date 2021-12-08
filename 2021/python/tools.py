@@ -25,3 +25,19 @@ def binary_invert(binary: str) -> str:
 # compress multiple whitespaces in a string into one
 def compress_spaces(data: str) -> str:
     return " ".join(data.split())
+
+
+## sort a string alphabetically
+def sort_string(data: str) -> str:
+    return "".join(sorted(data))
+
+
+## sort a list by length
+def sort_by_length(strings: list) -> list:
+    return sorted(strings, key=len)
+
+
+# sum of a series incrementing by step from start for count times
+# def sum_incrementing(first: int, count: int, step: int = 1) -> int:
+#     last = first + (count * step)
+#     return (2 * first + count * step) / 2 * count
