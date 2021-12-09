@@ -31,30 +31,18 @@ class CaveMap:
 
     def _is_lowpoint(self, x, y) -> bool:
         is_lowpoint = True
-        if self._get_value_at_coordinate(x + 1, y) <= self._get_value_at_coordinate( x, y):
+        if self._get_value_at_coordinate(x + 1, y) <= self._get_value_at_coordinate(x, y):
             is_lowpoint = False
-        if self._get_value_at_coordinate(x - 1, y) <= self._get_value_at_coordinate( x, y):
+        elif self._get_value_at_coordinate(x - 1, y) <= self._get_value_at_coordinate(x, y):
             is_lowpoint = False
-        if self._get_value_at_coordinate(x, y + 1) <= self._get_value_at_coordinate( x, y):
+        elif self._get_value_at_coordinate(x, y + 1) <= self._get_value_at_coordinate(x, y):
             is_lowpoint = False
-        if self._get_value_at_coordinate(x, y - 1) <= self._get_value_at_coordinate( x, y):
+        elif self._get_value_at_coordinate(x, y - 1) <= self._get_value_at_coordinate(x, y):
             is_lowpoint = False
         return is_lowpoint
 
     def _get_value_at_coordinate(self, x, y, debug=0):
-        value: int = self._max_val
-        if debug > 1:
-            print("* Getting value for:", x, y)
-        if 0 <= y < len(self._map):
-            if 0 <= x < len(self._map[y]):
-                value = self._map[y][x]
-            elif debug > 0:
-                print("out of bounds x", x, y)
-        elif debug > 0:
-            print("out of bounds y", x, y)
-        if debug > 1:
-            print("value returned", value)
-        return value
+        return get_2d_matrix_value_at_x_y_safe(self._map, x, y, self._max_val)
 
 
 if __name__ == "__main__":

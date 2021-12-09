@@ -37,6 +37,26 @@ def sort_by_length(strings: list) -> list:
     return sorted(strings, key=len)
 
 
+## get a value from a 2d matrix (int list of lists, where y is the index in the list of lists and x the index in the individual list
+## a default value will be returned, if the index would be out of bounds
+def get_2d_matrix_value_at_x_y_safe(
+    matrix: list[list[int]], x: int, y: int, no_value_value: int = 0, log_level: int = 0
+):
+    value = no_value_value
+    if log_level > 1:
+        print("* Getting value for:", x, y)
+    if 0 <= y < len(matrix):
+        if 0 <= x < len(matrix[y]):
+            value = matrix[y][x]
+        elif log_level > 0:
+            print("out of bounds x", x, y)
+    elif log_level > 0:
+        print("out of bounds y", x, y)
+    if log_level > 1:
+        print("value returned", value)
+    return value
+
+
 # sum of a series incrementing by step from start for count times
 # def sum_incrementing(first: int, count: int, step: int = 1) -> int:
 #     last = first + (count * step)

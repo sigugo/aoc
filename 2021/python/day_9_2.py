@@ -39,19 +39,9 @@ class CaveMap(day_9_1.CaveMap):
             self._walk_basin(x, y - 1, False)
 
     def _get_basin_index_at_coordinate(self, x, y, debug=0) -> int:
-        value: int = self._no_basin_index
-        if debug > 1:
-            print("* Getting value for:", x, y)
-        if 0 <= y < len(self._basin_map):
-            if 0 <= x < len(self._basin_map[y]):
-                value = self._basin_map[y][x]
-            elif debug > 0:
-                print("out of bounds x", x, y)
-        elif debug > 0:
-            print("out of bounds y", x, y)
-        if debug > 1:
-            print("value returned", value)
-        return value
+        return get_2d_matrix_value_at_x_y_safe(
+            self._basin_map, x, y, self._no_basin_index, debug
+        )
 
     def _set_basin_index_at_coordinate(self, x, y, i) -> None:
         self._basin_map[y][x] = i
