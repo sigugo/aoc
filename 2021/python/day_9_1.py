@@ -1,7 +1,6 @@
 from tools import *
 
 
-
 class CaveMap:
     def __init__(self):
         self._min_val = 0
@@ -22,26 +21,27 @@ class CaveMap:
             sum += self._get_value_at_coordinate(x, y) + 1
         return sum
 
-
     def find_lowpoints(self) -> list[tuple[int, int]]:
         lowpoints: list[tuple[int, int]] = []
         for y in range(len(self._map)):
             for x in range(len(self._map[y])):
-                is_lowpoint = True
-                if self._get_value_at_coordinate(x+1, y) <= self._get_value_at_coordinate(x, y):
-                    is_lowpoint = False
-                if self._get_value_at_coordinate(x-1, y) <= self._get_value_at_coordinate(x, y):
-                    is_lowpoint = False
-                if self._get_value_at_coordinate(x, y+1) <= self._get_value_at_coordinate(x, y):
-                    is_lowpoint = False
-                if self._get_value_at_coordinate(x, y-1) <= self._get_value_at_coordinate(x, y):
-                    is_lowpoint = False
-                if is_lowpoint:
-                    print('found low at', x, y)
+                if self._is_lowpoint(x, y):
                     lowpoints.append((x, y))
-        return(lowpoints)
-    
-    def _get_value_at_coordinate(self, x, y, debug = 0):
+        return lowpoints
+
+    def _is_lowpoint(self, x, y) -> bool:
+        is_lowpoint = True
+        if self._get_value_at_coordinate(x + 1, y) <= self._get_value_at_coordinate( x, y):
+            is_lowpoint = False
+        if self._get_value_at_coordinate(x - 1, y) <= self._get_value_at_coordinate( x, y):
+            is_lowpoint = False
+        if self._get_value_at_coordinate(x, y + 1) <= self._get_value_at_coordinate( x, y):
+            is_lowpoint = False
+        if self._get_value_at_coordinate(x, y - 1) <= self._get_value_at_coordinate( x, y):
+            is_lowpoint = False
+        return is_lowpoint
+
+    def _get_value_at_coordinate(self, x, y, debug=0):
         value: int = self._max_val
         if debug > 1:
             print("* Getting value for:", x, y)
@@ -49,12 +49,13 @@ class CaveMap:
             if 0 <= x < len(self._map[y]):
                 value = self._map[y][x]
             elif debug > 0:
-                print('out of bounds x', x, y)
+                print("out of bounds x", x, y)
         elif debug > 0:
-                print('out of bounds y', x, y)
-        if debug > 1:    
-            print('value returned', value)
+            print("out of bounds y", x, y)
+        if debug > 1:
+            print("value returned", value)
         return value
+
 
 if __name__ == "__main__":
     input_file = "../inputs/9/data.input"
