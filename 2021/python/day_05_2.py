@@ -1,8 +1,8 @@
 from tools import *
-import day_5_1
+import day_05_1
 
 
-class VentMap(day_5_1.VentMap):
+class VentMap(day_05_1.VentMap):
     def __init__(self):
         super(VentMap, self).__init__()
 

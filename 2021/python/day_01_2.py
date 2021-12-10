@@ -1,8 +1,8 @@
-import day_1_1
+import day_01_1
 from copy import deepcopy
 
 
-class SonarSweep(day_1_1.SonarSweep):
+class SonarSweep(day_01_1.SonarSweep):
     def __init__(self):
         super().__init__()
 

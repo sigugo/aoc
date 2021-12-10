@@ -1,5 +1,5 @@
 from tools import *
-from day_4_1 import BingoGame
+from day_04_1 import BingoGame
 
 
 class LosingBingoGame(BingoGame):

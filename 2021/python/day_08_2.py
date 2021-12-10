@@ -1,6 +1,6 @@
 from tools import *
 from copy import deepcopy
-import day_8_1
+import day_08_1
 
 
 class DisplayDecoder:
@@ -82,7 +82,7 @@ def common_characters(first: str, second: str) -> str:
     return output
 
 
-class SignalDecoder(day_8_1.SignalDecoder):
+class SignalDecoder(day_08_1.SignalDecoder):
     def __init__(self):
         super(SignalDecoder, self).__init__()
         self._signals: list[str] = []

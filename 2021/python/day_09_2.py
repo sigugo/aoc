@@ -1,17 +1,14 @@
 from tools import *
-import day_9_1
+import day_09_1
 
 
-class CaveMap(day_9_1.CaveMap):
+class CaveMap(day_09_1.CaveMap):
     def __init__(self, input_data):
         super(CaveMap, self).__init__()
-
         self.parse_input_data(input_data)
-
         self._basin_map: list[list[int]] = []
         self._no_basin_index: int = 0
         self._basin_index: int = self._no_basin_index
-
         self._initialize_basin_map()
 
     def _initialize_basin_map(self) -> None:
@@ -70,15 +67,12 @@ class CaveMap(day_9_1.CaveMap):
 
     def _get_basin_sizes_list(self) -> list[int]:
         size_dict: dict[int, int] = {}
-        size_list: list[int] = []
         for y in range(len(self._map)):
             for x in range(len(self._map[y])):
                 index = self._get_basin_index_at_coordinate(x, y)
                 if index > 0:
                     size_dict[index] = size_dict.setdefault(index, 0) + 1
-        for value in size_dict.values():
-            size_list.append(value)
-        return size_list
+        return list(size_dict.values())
 
 
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
 from tools import *
-import day_7_1
+import day_07_1
 
 
-class CrabCast(day_7_1.CrabCast):
+class CrabCast(day_07_1.CrabCast):
     def __init__(self):
         super(CrabCast, self).__init__()
 
