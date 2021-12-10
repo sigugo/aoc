@@ -37,8 +37,8 @@ class Diagnostics(DiagnosticsSuper):
 
 
 if __name__ == "__main__":
-    # input_file = '../inputs/3/example.txt'
-    input_file = "../inputs/3/input.txt"
+    # input_file = '../inputs/03/example.txt'
+    input_file = "../inputs/03/input.txt"
 
     report = Diagnostics()
     report.read_diagnostic_datafile(input_file)

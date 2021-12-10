@@ -175,9 +175,9 @@ class SignalDecoder(day_08_1.SignalDecoder):
 
 
 if __name__ == "__main__":
-    input_file = "../inputs/8/input.txt"
-    # input_file = "../inputs/8/example.txt"
-    # input_file = "../inputs/8/example2.txt"
+    input_file = "../inputs/08/input.txt"
+    # input_file = "../inputs/08/example.txt"
+    # input_file = "../inputs/08/example2.txt"
     input_data: list[str] = file_to_list(input_file)
     display_decoder = DisplayDecoder()
     display_decoder.parse_input_data(input_data)

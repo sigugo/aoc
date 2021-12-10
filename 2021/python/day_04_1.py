@@ -121,8 +121,8 @@ class BingoBoard:
 
 
 if __name__ == "__main__":
-    input_file = "../inputs/4/input.txt"
-    # input_file = '../inputs/4/example.txt'
+    input_file = "../inputs/04/input.txt"
+    # input_file = '../inputs/04/example.txt'
     input_data: list[str] = file_to_list(input_file)
     game = BingoGame()
     game.parse_game_data(input_data)

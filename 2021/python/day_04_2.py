@@ -33,7 +33,7 @@ class LosingBingoGame(BingoGame):
 
 
 if __name__ == "__main__":
-    input_file = "../inputs/4/input.txt"
+    input_file = "../inputs/04/input.txt"
     input_data = file_to_list(input_file)
 
     game = LosingBingoGame()

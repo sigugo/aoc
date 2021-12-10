@@ -63,8 +63,8 @@ class VentMap:
 
 
 if __name__ == "__main__":
-    input_file = "../inputs/5/input.txt"
-    # input_file = '../inputs/5/example.txt'
+    input_file = "../inputs/05/input.txt"
+    # input_file = '../inputs/05/example.txt'
     input_data: list[str] = file_to_list(input_file)
     ventmap = VentMap()
     ventmap.read_input(input_data)

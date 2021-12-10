@@ -46,8 +46,8 @@ class CaveMap:
 
 
 if __name__ == "__main__":
-    input_file = "../inputs/9/data.input"
-    # input_file = "../inputs/9/data.example"
+    input_file = "../inputs/09/data.input"
+    # input_file = "../inputs/09/data.example"
     input_data: list[str] = file_to_list(input_file)
     map = CaveMap()
     map.parse_input_data(input_data)

@@ -46,8 +46,8 @@ class SchoolOfFish:
 
 
 if __name__ == "__main__":
-    input_file = "../inputs/6/input.txt"
-    # input_file = "../inputs/6/example.txt"
+    input_file = "../inputs/06/input.txt"
+    # input_file = "../inputs/06/example.txt"
     input_data: list[str] = file_to_list(input_file)
     lanternfish_school = SchoolOfFish()
     lanternfish_school.parse_input_data(input_data[0])

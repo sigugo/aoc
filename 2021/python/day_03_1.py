@@ -37,8 +37,8 @@ class Diagnostics:
 
 
 if __name__ == "__main__":
-    input_file = "../inputs/3/input.txt"
-    # input_file = '../inputs/3/example.txt'
+    input_file = "../inputs/03/input.txt"
+    # input_file = '../inputs/03/example.txt'
     report = Diagnostics()
     report.read_diagnostic_datafile(input_file)
     print(int(report.get_gamma(), base=2) * int(report.get_epsilon(), base=2))

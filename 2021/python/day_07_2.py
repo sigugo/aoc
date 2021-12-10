@@ -15,8 +15,8 @@ class CrabCast(day_07_1.CrabCast):
 
 
 if __name__ == "__main__":
-    input_file = "../inputs/7/input.txt"
-    # input_file = "../inputs/7/example.txt"
+    input_file = "../inputs/07/input.txt"
+    # input_file = "../inputs/07/example.txt"
     input_data: list[str] = file_to_list(input_file)
     cast = CrabCast()
     cast.parse_input_data(input_data[0])

@@ -23,7 +23,7 @@ class SonarSweep(day_01_1.SonarSweep):
 
 
 if __name__ == "__main__":
-    input_file = "../inputs/1/input.txt"
+    input_file = "../inputs/01/input.txt"
     sweep = SonarSweep()
     sweep.read_input_file(input_file)
     print(sweep.count_sliding_depth_increases())

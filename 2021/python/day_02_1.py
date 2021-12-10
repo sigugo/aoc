@@ -32,7 +32,7 @@ class Submarine:
 
 
 if __name__ == "__main__":
-    input_file = "../inputs/2/input.txt"
+    input_file = "../inputs/02/input.txt"
     sub = Submarine()
     sub.append_course_file(input_file)
     sub.follow_course()
