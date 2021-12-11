@@ -6,6 +6,7 @@ class GameOfOctopodes:
         self._consortium: list[list[int]] = []
         self._cycles: int = 0
         self._flashes: int = 0
+        self._energy_threshold: int = 10
         if input_data:
             self.parse_input(input_data)
 
@@ -26,11 +27,8 @@ class GameOfOctopodes:
         flashes = 0
         for y in range(len(self._consortium)):
             for x in range(len(self._consortium[y])):
-                if self._get_energy(x, y) >= 10:
+                if self._get_energy(x, y) >= self._energy_threshold:
                     flashes += 1
-        for y in range(len(self._consortium)):
-            for x in range(len(self._consortium[y])):
-                if self._get_energy(x, y) >= 10:
                     self._set_energy(x, y, 0)
         return flashes
 
@@ -38,7 +36,7 @@ class GameOfOctopodes:
         energy = self._get_energy(x, y)
         if energy >= 0:
             self._set_energy(x, y, energy + 1)
-            if energy == 9:
+            if energy == self._energy_threshold - 1:
                 for x2 in range(x - 1, x + 2):
                     for y2 in range(y - 1, y + 2):
                         self._raise_energy(x2, y2)
@@ -61,4 +59,4 @@ if __name__ == "__main__":
     input_data: list[str] = file_to_list(input_file)
     consortium = GameOfOctopodes(input_data)
     consortium.advance_lifecycles()
-    print(self.get_flashes)
+    print(consortium.get_flashes())
