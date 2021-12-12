@@ -1,4 +1,4 @@
-from tools import *
+from tools import file_to_list
 import day_11_1
 
 
@@ -19,7 +19,7 @@ class GameOfOctopodes(day_11_1.GameOfOctopodes):
             size += len(i)
         self._size = size
 
-    def advance_lifecycles_until_all_flash(self):
+    def advance_lifecycle_until_all_flash(self):
         flashes = 0
         while flashes < self._size:
             self._cycles += 1
@@ -35,5 +35,5 @@ if __name__ == "__main__":
     # input_file = "../inputs/11/data.example"
     input_data: list[str] = file_to_list(input_file)
     consortium = GameOfOctopodes(input_data)
-    consortium.advance_lifecycles_until_all_flash()
+    consortium.advance_lifecycle_until_all_flash()
     print(consortium.get_cycle())
