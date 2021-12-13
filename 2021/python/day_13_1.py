@@ -62,10 +62,6 @@ class InvisibleOrigami:
                 for i in range(len(sheet_b_reversed)):
                     sheet_b_reversed[i] = ldiff * [False] + sheet_b_reversed[i]
         self._combine_folds(sheet_a, sheet_b_reversed)
-        # self._sheet = [[False] * len(sheet_a[0]) for i in range(len(sheet_a))]
-        # for y in range(len(sheet_a)):
-        #     for x in range(len(sheet_a[y])):
-        #         self._sheet[y][x] = sheet_a[y][x] or sheet_b_reversed[y][x]
 
     def _fold_y(self, fold_index: int) -> None:
         sheet_a = self._sheet[:fold_index]
