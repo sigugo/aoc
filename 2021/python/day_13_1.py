@@ -75,12 +75,14 @@ class InvisibleOrigami:
             if la < lb:
                 sheet_a = [[False] * len(sheet_a[0]) for i in range(diff)] + sheet_a
             elif lb < la:
-                sheet_b_reversed = [[False] * len(sheet_b_reversed[0]) for i in range(ldiff)] + sheet_b_reversed
+                sheet_b_reversed = [
+                    [False] * len(sheet_b_reversed[0]) for i in range(ldiff)
+                ] + sheet_b_reversed
 
         self._combine_folds(sheet_a, sheet_b_reversed)
 
     def _combine_folds(
-        self, a: list[list[bool]], b: list[list[bool]], debug: bool = False 
+        self, a: list[list[bool]], b: list[list[bool]], debug: bool = False
     ) -> None:
         self._sheet = [[False] * len(a[0]) for i in range(len(a))]
         for y in range(len(a)):
@@ -106,7 +108,7 @@ class InvisibleOrigami:
                     line += "#"
                 else:
                     line += "."
-            output += line + "\n" 
+            output += line + "\n"
         return output
 
     def pretty_print(self) -> None:
@@ -118,26 +120,24 @@ class InvisibleOrigami:
                     line += Fore.RED + "#"
                 else:
                     line += Fore.BLACK + "."
-            output += line + "\n" 
+            output += line + "\n"
         print(output)
-
-
 
 
 if __name__ == "__main__":
     input_file = "../inputs/13/data.input"
     # input_file = "../inputs/13/data.example"
     input_data: list[str] = file_to_list(input_file)
-    
+
     paper = InvisibleOrigami(input_data)
     # (fd, fi) = paper._folds[0]
     # paper.fold(fd, fi)
     # print(paper.count_dots())
-    
-    #(fd, fi) = paper._folds[0]
-    #paper.fold(fd, fi)
-    
+
+    # (fd, fi) = paper._folds[0]
+    # paper.fold(fd, fi)
+
     paper.fold_all()
     paper.pretty_print()
-   
+
     # print(paper)
