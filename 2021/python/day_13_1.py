@@ -1,4 +1,5 @@
 from tools import *
+from colorama import Fore
 
 
 class InvisibleOrigami:
@@ -96,7 +97,7 @@ class InvisibleOrigami:
                     count += 1
         return count
 
-    def __str__(self):
+    def __str__(self) -> str:
         output = ""
         for i in self._sheet:
             line = ""
@@ -108,6 +109,20 @@ class InvisibleOrigami:
             output += line + "\n" 
         return output
 
+    def pretty_print(self) -> None:
+        output = ""
+        for i in self._sheet:
+            line = ""
+            for j in i:
+                if j:
+                    line += Fore.RED + "#"
+                else:
+                    line += Fore.BLACK + "."
+            output += line + "\n" 
+        print(output)
+
+
+
 
 if __name__ == "__main__":
     input_file = "../inputs/13/data.input"
@@ -115,7 +130,6 @@ if __name__ == "__main__":
     input_data: list[str] = file_to_list(input_file)
     
     paper = InvisibleOrigami(input_data)
-    # print(paper) 
     # (fd, fi) = paper._folds[0]
     # paper.fold(fd, fi)
     # print(paper.count_dots())
@@ -124,5 +138,6 @@ if __name__ == "__main__":
     #paper.fold(fd, fi)
     
     paper.fold_all()
+    paper.pretty_print()
    
-    print(paper)
+    # print(paper)
