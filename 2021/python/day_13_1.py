@@ -38,7 +38,6 @@ class InvisibleOrigami:
             self.fold(fd, fi)
 
     def fold(self, fold_axis: str, fold_index: int) -> None:
-        print("Folding", fold_axis, "at index", fold_index, "\n")
         if fold_axis == "x":
             self._fold_x(fold_index)
         elif fold_axis == "y":
