@@ -40,7 +40,7 @@ class MoleculeBuilder:
                 )
                 self._counts[insert] = self._counts.get(insert, 0) + self._polymer[pair]
                 new_polymer[pair] -= self._polymer[pair]
-        self._polymer = deepcopy(new_polymer)
+        self._polymer = new_polymer
 
     def get_polymer_score(self) -> int:
         counts: list[tuple[int, str]] = []
@@ -62,5 +62,4 @@ if __name__ == "__main__":
     data: list[str] = file_to_list(input_file)
     polymer_molecule = MoleculeBuilder(data)
     polymer_molecule.run_inserts(40)
-    print(polymer_molecule)
     print(polymer_molecule.get_polymer_score())
