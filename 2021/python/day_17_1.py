@@ -31,8 +31,7 @@ class TrajectoryData:
 
     def _get_coolest_shot(self):
         vylist = []
-        ytestmax = 1000
-        for v in range(ytestmax):
+        for v in range(-1000,1000):
             py = 0
             vy = v
             while True:
@@ -43,7 +42,8 @@ class TrajectoryData:
                 if self.tymin <= py <= self.tymax:
                     vylist.append(v)
                     break
-        for ivx in range(self.vxmax):
+        #for ivx in range(self.vxmax):
+        for ivx in range(self.txmax+1):
             for ivy in vylist:
                 px = 0
                 py = 0
