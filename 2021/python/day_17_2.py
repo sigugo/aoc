@@ -16,7 +16,7 @@ class TrajectoryData:
     vectors: list = field(default_factory=list)
 
     def __post_init__(self):
-        self._get_coolest_shot()
+        self._get_shots()
 
     @property
     def vxmax(self) -> int:
@@ -30,7 +30,7 @@ class TrajectoryData:
             tmax = tmax if tmax > t - 1 else t
         return tmax
 
-    def _get_coolest_shot(self):
+    def _get_shots(self):
         vylist = []
         for v in range(-1000, 1000):
             py = 0
