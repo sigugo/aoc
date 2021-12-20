@@ -13,7 +13,6 @@ def enhance(image: list[list[str]], enhancer: str, ip: str = ".") -> list[list[s
     for y in range(len(tempimage)):
         outline: list[str] = []
         for x in range(len(tempimage[y])):
-            # print("\nEnhancing Pixel", x, y)
             scanstring: str = ""
             for yscan in range(-1, 2):
                 for xscan in range(-1, 2):
@@ -38,7 +37,7 @@ def print_image(image: list[list[str]]) -> None:
         for xpixel in xline:
             outline += xpixel
         output += outline + "\n"
-    system("clear")
+    system("clear") # OS 
     print(output)
 
 
