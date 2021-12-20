@@ -1,6 +1,5 @@
 from tools import *
 from os import system
-from time import sleep
 
 
 def enhance(image: list[list[str]], enhancer: str, ip: str = ".") -> list[list[str]]:
