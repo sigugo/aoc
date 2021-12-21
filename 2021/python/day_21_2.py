@@ -8,19 +8,19 @@ dice_combinations = []
 for i in range(1, DICE_SIDES + 1):
     for j in range(1, DICE_SIDES + 1):
         for k in range(1, DICE_SIDES + 1):
-            dice_combinations.append((i,j,k))
-
+            dice_combinations.append((i+j+k)%10)
+dice_combinations.sort()
 
 @cache
 def recurse_turn(p0: int, s0: int, p1: int, s1: int) -> tuple[int, int]:
-
+    
     if s1 >= WINNING_SCORE:
         return (0, 1)
-
+    
     score0, score1 = 0, 0
-
-    for i, j, k in dice_combinations:
-        pn = p0 + i + j + k
+    
+    for roll in dice_combinations:
+        pn = p0 + roll 
         if pn > 10:
             pn %= 10
         sn = s0 + pn
@@ -31,8 +31,8 @@ def recurse_turn(p0: int, s0: int, p1: int, s1: int) -> tuple[int, int]:
 
 
 def main() -> None:
-    data = file_to_list("../inputs/21/data.input")
-    # data = file_to_list("../inputs/21/data.example")
+    # data = file_to_list("../inputs/21/data.input")
+    data = file_to_list("../inputs/21/data.example")
 
     t = recurse_turn(int(data[0][-1]), 0, int(data[1][-1]), 0)
     print(t)
