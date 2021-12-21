@@ -1,9 +1,6 @@
 from tools import *
 from dataclasses import dataclass
-from copy import deepcopy
-import sys
 
-sys.setrecursionlimit(1000)
 
 
 @dataclass
@@ -25,7 +22,7 @@ class Player:
 
 
 def recurse_turn(
-    players: list[Player], roll: int = 0, active_player: int = 1, depth=0
+    players: list[Player], roll: int = 0, active_player: int = 1
 ) -> tuple[int, int]:
     winning_score = 21
     dice_sides: int = 3
@@ -41,7 +38,7 @@ def recurse_turn(
             for j in range(1, dice_sides + 1):
                 for k in range(1, dice_sides + 1):
                     res0, res1 = recurse_turn(
-                        deepcopy(players), i + j + k, active_player, depth + 1
+                        players, i + j + k, active_player
                     )
                     score0 += res0
                     score1 += res1
