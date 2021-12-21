@@ -8,8 +8,7 @@ dice_combinations = []
 for i in range(1, DICE_SIDES + 1):
     for j in range(1, DICE_SIDES + 1):
         for k in range(1, DICE_SIDES + 1):
-            t = tuple((i, j, k))
-            dice_combinations.append(t)
+            dice_combinations.append((i,j,k))
 
 
 @cache
