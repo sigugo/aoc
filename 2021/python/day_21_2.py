@@ -1,52 +1,45 @@
-from tools import *
-from dataclasses import dataclass
+from functools import cache
+from tools import file_to_list
+
+WINNING_SCORE: int = 21
+DICE_SIDES: int = 3
+
+dice_combinations = []
+for i in range(1, DICE_SIDES + 1):
+    for j in range(1, DICE_SIDES + 1):
+        for k in range(1, DICE_SIDES + 1):
+            t = tuple((i, j, k))
+            dice_combinations.append(t)
 
 
+@cache
+def recurse_turn(p0: int, s0: int, p1: int, s1: int) -> tuple[int, int]:
 
-@dataclass
-class Player:
-    position: int
-    name: str
-    score: int = 0
+    if s0 >= WINNING_SCORE:
+        return (1, 0)
+    elif s1 >= WINNING_SCORE:
+        return (0, 1)
 
-    def move(self, count: int) -> None:
-        move = count % 10
-        self.position = (
-            self.position + move - 10
-            if self.position + move > 10
-            else self.position + move
-        )
-        self.score += self.position
-        if self.score >= 31:
-            print("THIS IS WRONG, Player", self.name, "has score", self.score)
+    score0, score1 = 0, 0
 
-
-def recurse_turn(
-    players: list[Player], roll: int = 0, active_player: int = 1
-) -> tuple[int, int]:
-    winning_score = 21
-    dice_sides: int = 3
-    if roll > 0:
-        players[active_player].move(roll)
-
-    if players[active_player].score >= winning_score:
-        return (1, 0) if active_player == 0 else (0, 1)
-    else:
-        score0, score1 = 0, 0
-        active_player = 1 if active_player == 0 else 0
-        for i in range(1, dice_sides + 1):
-            for j in range(1, dice_sides + 1):
-                for k in range(1, dice_sides + 1):
-                    res0, res1 = recurse_turn(
-                        players, i + j + k, active_player
-                    )
-                    score0 += res0
-                    score1 += res1
-        return score0, score1
+    for i, j, k in dice_combinations:
+        pn = p0 + i + j + k
+        if pn > 10:
+            pn %= 10
+        sn = s0 + pn
+        res1, res0 = recurse_turn(p1, s1, pn, sn)
+        score0 += res0
+        score1 += res1
+    return score0, score1
 
 
 def main() -> None:
-    print(recurse_turn([Player(4, "One"), Player(8, "Two")]))
+    data = file_to_list("../inputs/21/data.input")
+    # data = file_to_list("../inputs/21/data.example")
+
+    t = recurse_turn(int(data[0][-1]), 0, int(data[1][-1]), 0)
+    print(t)
+    print(max(t))
 
 
 if __name__ == "__main__":
