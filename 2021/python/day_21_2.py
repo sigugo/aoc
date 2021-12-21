@@ -15,9 +15,7 @@ for i in range(1, DICE_SIDES + 1):
 @cache
 def recurse_turn(p0: int, s0: int, p1: int, s1: int) -> tuple[int, int]:
 
-    if s0 >= WINNING_SCORE:
-        return (1, 0)
-    elif s1 >= WINNING_SCORE:
+    if s1 >= WINNING_SCORE:
         return (0, 1)
 
     score0, score1 = 0, 0
