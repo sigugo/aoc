@@ -1,77 +1,121 @@
 from tools import *
-from os import system
+from dataclasses import dataclass
 
 
-def enhance(image: list[list[str]], enhancer: str, ip: str = ".") -> list[list[str]]:
-    xlen = len(image[0]) + 2
-    tempimage: list[list[str]] = []
-    tempimage.append(xlen * [ip])
-    for xline in image:
-        tempimage.append([ip] + xline + [ip])
-    tempimage.append(xlen * [ip])
-    image = []
-    for y in range(len(tempimage)):
-        outline: list[str] = []
-        for x in range(len(tempimage[y])):
-            scanstring: str = ""
-            for yscan in range(-1, 2):
-                for xscan in range(-1, 2):
-                    scanstring += (
-                        "1"
-                        if get_2d_matrix_value_at_x_y_safe(
-                            tempimage, x + xscan, y + yscan, ip
-                        )
-                        == "#"
-                        else "0"
-                    )
-            outline.append(enhancer[int(scanstring, 2)])
-        image.append(outline)
+@dataclass
+class DeterministicDice:
+    value: int = 0
+    rolls: int = 0
 
-    return image
+    def roll(self) -> int:
+        self.value += 1
+        self.rolls += 1
+        if self.value > 100:
+            self.value = 1
+        return self.value
 
 
-def print_image(image: list[list[str]]) -> None:
-    output = ""
-    for xline in image:
-        outline = ""
-        for xpixel in xline:
-            outline += xpixel
-        output += outline + "\n"
-    system("clear") # OS 
-    print(output)
+@dataclass
+class Player:
+    position: int
+    score: int = 0
+
+    def move(self, count: int) -> None:
+        move = count % 10
+        self.position = (
+            self.position + move - 10
+            if self.position + move > 10
+            else self.position + move
+        )
+        self.score += self.position
 
 
-def image_from_input(input: list[str]) -> list[list[str]]:
-    image: list[list[str]] = []
-    for inputline in input:
-        image.append(list(inputline))
-    return image
+class Game:
+    def __init__(self):
+        self._dice = DeterministicDice()
+        self._players: list[Player] = []
+        self._rolls_per_turn: int = 3
+        self._winning_score = 1000
+
+    def add_player(self, player: Player) -> None:
+        self._players.append(player)
+
+    def play(self) -> int:
+        last_score: int = 0
+        while True:
+            for i in range(len(self._players)):
+                player_turn_moves: int = 0
+                for _ in range(self._rolls_per_turn):
+                    player_turn_moves += self._dice.roll()
+                self._players[i].move(player_turn_moves)
+                if self._players[i].score >= self._winning_score:
+                    print("Rolls:", self._dice.rolls)
+                    return last_score * self._dice.rolls
+                last_score = self._players[i].score
+
+    # def one_round(self) -> None:
+    #     print("## Player 1")
+    #     rolls = 0
+
+    #     roll = self._dice.roll()
+    #     print("Roll:", roll, "Rolls Count:", self._dice.rolls)
+    #     rolls += roll
+
+    #     roll = self._dice.roll()
+    #     print("Roll:", roll, "Rolls Count:", self._dice.rolls)
+    #     rolls += roll
+
+    #     roll = self._dice.roll()
+    #     print("Roll:", roll, "Rolls Count:", self._dice.rolls)
+    #     rolls += roll
+
+    #     print("Total Roll:", rolls)
+
+    #     # print("Calculating Position / Score from old:", self._players[0].position, "/", self._players[0].score)
+    #     self._players[0].move(rolls)
+    #     print(
+    #         "New Position / Score:",
+    #         self._players[0].position,
+    #         "/",
+    #         self._players[0].score,
+    #     )
+
+    #     print("## Player 2")
+    #     rolls = 0
+
+    #     roll = self._dice.roll()
+    #     print("Roll:", roll, "Rolls Count:", self._dice.rolls)
+    #     rolls += roll
+
+    #     roll = self._dice.roll()
+    #     print("Roll:", roll, "Rolls Count:", self._dice.rolls)
+    #     rolls += roll
+
+    #     roll = self._dice.roll()
+    #     print("Roll:", roll, "Rolls Count:", self._dice.rolls)
+    #     rolls += roll
+
+    #     print("Total Roll:", rolls)
+
+    #     # print("Calculating Position / Score from old:", self._players[1].position, "/", self._players[1].score)
+    #     self._players[1].move(rolls)
+    #     print(
+    #         "New Position / Score:",
+    #         self._players[1].position,
+    #         "/",
+    #         self._players[1].score,
+    #     )
 
 
 def main() -> None:
-    input_file = "../inputs/20/data.input"
-    # input_file = "../inputs/20/data.example"
-    input_data: list[str] = file_to_list(input_file)
-
-    enhancer = input_data[0]
-
-    image: list[list[str]] = image_from_input(input_data[2:])
-
-    # enhance count = 1     # part 1
-    enhance_count = 25  # part 2
-
-    for _ in range(enhance_count):
-        image = enhance(image, enhancer, enhancer[-1])
-        print_image(image)
-        image = enhance(image, enhancer, enhancer[0])
-        print_image(image)
-
-    count = 0
-    for line in image:
-        for c in line:
-            if c == "#":
-                count += 1
-    print(count)
+    game = Game()
+    game.add_player(Player(7))
+    game.add_player(Player(3))
+    print(game.play())
+    # game.one_round()
+    # game.one_round()
+    # game.one_round()
+    #game.one_round()
 
 
 if __name__ == "__main__":
