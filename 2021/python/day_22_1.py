@@ -1,6 +1,5 @@
 from tools import file_to_list
 from typing import NamedTuple
-from functools import cache
 
 MIN_AXIS: int = -50
 MAX_AXIS: int = 50
@@ -20,7 +19,6 @@ class Command(NamedTuple):
     zrange: tuple[int, int]
 
     @classmethod
-    @cache
     def from_str(cls, data: str):
         command, coordranges = data.split(" ")
 
@@ -39,7 +37,6 @@ class Command(NamedTuple):
             ],
         )
 
-    @cache
     def in_field(self, p: Point) -> bool:
         return (
             self.xrange[0] <= p.x <= self.xrange[1]
@@ -63,10 +60,8 @@ def main() -> None:
     commands = []
     for line in data:
         commands.append(Command.from_str(line.strip()))
-    print("Command count:", len(commands))
-    for i, command in enumerate(commands):
-        print("Processing Command", i)
-        for core_point in core_points:
+    for core_point in core_points:
+        for i, command in enumerate(commands):
             if command.in_field(core_point):
                 if command.on:
                     core.add(core_point)
